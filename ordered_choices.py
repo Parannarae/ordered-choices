@@ -22,10 +22,20 @@ from typing import List, Tuple
 
 from static_attr_object import StaticAttrObject
 
+
+class _OrderedChoicesMetaClass(type):
+    """Metaclass of OrderedChoices
+
+    Automatically assign a str representation of each class attribute and store
+    the order of those attributes.
+    """
+    pass
+
+
 # TODO: remove StaticAttrObject inheritance
-class OrderedChoices(StaticAttrObject):
+class OrderedChoices(StaticAttrObject, metaclass=_OrderedChoicesMetaClass):
     """Enum like data structure where the written order of members is used as a
-    comparison factor.
+    comparison factor
     
     Characteristics of this class:
         - value of each member is str representation of the member's name
