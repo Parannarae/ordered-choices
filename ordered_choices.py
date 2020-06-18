@@ -11,16 +11,25 @@ order of the current status.
 For example,
 ```
 class SomeChoices(OrderedChoices):
-    READY
-    SET
-    GO
+    READY = OrderedChoiceItem('ready', 0)
+    SET = OrderedChoiceItem('set', 1)
+    GO = OrderedChoiceItem('go', 2)
 ```
-would make the values stored at DB being one of a string `READY`, `SET`, 
-or `GO`, yet you can check if `current_status <= SomeChoices.GO`.
+would make the values stored at DB being one of a string `ready`, `set`, 
+or `go`, yet you can check if `current_status <= SomeChoices.go`.
 """
 from typing import List, Tuple
 
 from static_attr_object import StaticAttrObject
+
+
+class OrderedChoiceItem:
+    """Class for values in OrderedChoices class attributes
+    """
+    value = None
+
+    def __init__(self, value):
+        self.value = value
 
 
 class _OrderedChoicesMetaClass(type):

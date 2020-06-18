@@ -1,12 +1,12 @@
 import unittest
 
-from ordered_choices import OrderedChoices
+from ordered_choices import OrderedChoices, OrderedChoiceItem
 
 class TestOrderedChoices(unittest.TestCase):
     def setUp(self):
         class MyChoices(OrderedChoices):
-            var_1 = 'var_1'
-            var_2 = 'var_2'
+            var_1 = OrderedChoiceItem('var_1')
+            var_2 = OrderedChoiceItem('var_2')
 
         self.MyChoices = MyChoices
 
